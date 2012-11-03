@@ -79,6 +79,14 @@ module GoogleStorage
       @access_token         = response['access_token']
     end
 
+    def after_refresh_access_token(&block)
+      if block
+        @after_refresh_access_token = block
+      else
+        @after_refresh_access_token
+      end
+    end
+
     def google_storage_id(id)
       case id
       when :you

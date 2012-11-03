@@ -36,14 +36,10 @@ module GoogleStorage
       response = post_request(
         'accounts.google.com', '/o/oauth2/token', @config.refresh_token, options
       )
-      after_refresh_access_token(response)
+      if @config.after_refresh_access_token
+        @config.after_refresh_access_token.call response
+      end
       response
-    end
-
-    protected
-
-    def after_refresh_access_token(response)
-      # placeholder monkeypatched by test suite
     end
 
   end
