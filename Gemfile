@@ -25,4 +25,5 @@ group :development do
   gem 'wdm',        :require => false, :platforms => [:mswin, :mingw] # Windows
 
   gem 'uuid'
+  gem 'debugger', :platforms => :ruby_19
 end
