@@ -15,14 +15,14 @@ module GoogleStorage
     end
 
     def construct_http_request(host, path, method, headers={}, params={}, options={})
-      raise "\nYou need to acquire a refresh_token before you can make requests to the Google API\n" unless @refresh_token
+      raise "\nYou need to acquire a refresh_token before you can make requests to the Google API\n" unless @config.refresh_token
       headers["Host"]               = host
       headers["Date"]               = Time.now.utc.strftime('%a, %d %b %Y %H:%M:%S GMT')
       headers["Content-Type"]       = options[:content_type] ? options[:content_type] : 'binary/octet-stream'
       headers["Content-Length"]     = (options[:data] ? options[:data].size : 0).to_s
-      headers["x-goog-api-version"] = @api_version
-      headers["x-goog-project-id"]  = @project_id if options[:send_goog_project_id]
-      headers["Authorization"]      = 'Bearer ' + @access_token
+      headers["x-goog-api-version"] = @config.api_version
+      headers["x-goog-project-id"]  = @config.project_id if options[:send_goog_project_id]
+      headers["Authorization"]      = 'Bearer ' + @config.access_token
       param_string                  = params.empty? ? '' : '?' + params_to_data_string(params)
       headers["Range"]              = options[:range] if options[:range]
       headers["If-Match"]           = options[:filename] if options[:filename]
@@ -35,9 +35,9 @@ module GoogleStorage
 
       request = _http_request(host, path, method, headers, param_string, options[:data])
       if request.class == Net::HTTPUnauthorized
-        warn "Token expired, will attempt to get a new one" if @debug
-        @access_token = self.refresh_access_token(@refresh_token)["access_token"]
-        headers["Authorization"]      = 'Bearer ' + @access_token
+        warn "Token expired, will attempt to get a new one" if @config.debug
+        @config.access_token = self.refresh_access_token(@config.refresh_token)["access_token"]
+        headers["Authorization"]      = 'Bearer ' + @config.access_token
         request = _http_request(host, path, method, headers, param_string, options[:data])
       end
       request
@@ -48,7 +48,7 @@ module GoogleStorage
     def _post_http_request(host, path, params, headers, data=nil)
       http = Net::HTTP.new(host, 443)
       http.use_ssl = true
-      http.set_debug_output $stderr if @debug
+      http.set_debug_output $stderr if @config.debug
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
       data ||= params_to_data_string(params)
@@ -61,8 +61,8 @@ module GoogleStorage
     def _http_request(host, path, method, headers, param_string, data=nil)
       http = Net::HTTP.new(host, 443)
       http.use_ssl = true
-      http.set_debug_output $stderr if @debug
-      http.read_timeout = @timeout ? @timeout : 15
+      http.set_debug_output $stderr if @config.debug
+      http.read_timeout = @config.timeout ? @config.timeout : 15
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
       req = method.new(path + param_string)

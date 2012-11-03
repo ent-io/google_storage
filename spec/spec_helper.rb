@@ -48,4 +48,12 @@ RSpec.configure do |config|
       VCR.use_cassette(name, options, &example)
     end
   end
+
+  # config.around(:each) do |example|
+  #   if example.metadata[:stdout] == :silence
+  #     $stdout.reopen(IO::NULL, 'w')
+  #   else
+  #     $stdout = STDOUT
+  #   end
+  # end
 end

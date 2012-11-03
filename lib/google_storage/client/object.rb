@@ -94,7 +94,7 @@ module GoogleStorage
       resp_obj[:message]      = "Object added successfully"
       resp_obj[:filename]     = filename
       resp_obj[:content_type] = options[:content_type] ? options[:content_type] : 'binary/octet-stream'
-      resp_obj[:url]          = public_file ? "http://#{@host}/#{bucket_name}/#{filename}" : \
+      resp_obj[:url]          = public_file ? "http://#{@config.host}/#{bucket_name}/#{filename}" : \
                                               "https://sandbox.google.com/storage/#{bucket_name}/#{filename}"
       resp_obj[:url_type]     = public_file ? "public" : "private"
       return resp_obj

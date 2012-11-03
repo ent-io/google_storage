@@ -25,8 +25,11 @@ require 'spec_helper'
 
 describe GoogleStorage::Client do
 
-  let(:client) { 
-    GoogleStorage::Client.new :config_yml => 'spec/support/google_storage.yml'
+  let(:client) {
+    GoogleStorage.configure do |config|
+      config.from_yaml 'spec/support/google_storage.yml'
+    end
+    GoogleStorage::Client.new
   }
 
   context '#get_webcfg' do
