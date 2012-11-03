@@ -1,4 +1,3 @@
-
 require 'digest/md5'
 
 module GoogleStorage
@@ -44,9 +43,6 @@ module GoogleStorage
       resp_obj[:size]     = resp.header["content-length"]
 
       return resp_obj
-
-
-
     end
 
     ###

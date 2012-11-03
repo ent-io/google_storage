@@ -1,4 +1,3 @@
-
 module GoogleStorage
   class Client
 

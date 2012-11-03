@@ -1,7 +1,7 @@
-require 'google_storage/request'
-require 'google_storage/token'
-require 'google_storage/bucket'
-require 'google_storage/object'
+require 'google_storage/client/request'
+require 'google_storage/client/token'
+require 'google_storage/client/bucket'
+require 'google_storage/client/object'
 require 'erb'
 require 'yaml'
 
