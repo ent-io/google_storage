@@ -26,7 +26,14 @@ describe GoogleStorage::Config do
   end
 
   context '#access_token' do
-    subject { GoogleStorage::Config.new.from_yaml 'spec/support/google_storage.yml' }
+    subject do
+      GoogleStorage::Config.new.from_yaml(
+        'spec/support/google_storage.yml'
+      ).after_refresh_access_token do |response|
+        $silence_access_token.call response
+      end
+    end
+
     context 'recorded tests' do
       it { subject.instance_variable_get(:@access_token).should be_nil }
       it { subject.instance_variable_get(:@access_token_expiry).should be_nil }

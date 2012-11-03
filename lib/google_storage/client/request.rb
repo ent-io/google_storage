@@ -22,7 +22,7 @@ module GoogleStorage
       headers["Content-Length"]     = (options[:data] ? options[:data].size : 0).to_s
       headers["x-goog-api-version"] = @config.api_version
       headers["x-goog-project-id"]  = @config.project_id if options[:send_goog_project_id]
-      headers["Authorization"]      = 'Bearer ' + @config.access_token
+      headers["Authorization"]      = 'Bearer ' + @config.access_token(self)
       param_string                  = params.empty? ? '' : '?' + params_to_data_string(params)
       headers["Range"]              = options[:range] if options[:range]
       headers["If-Match"]           = options[:filename] if options[:filename]
@@ -35,9 +35,9 @@ module GoogleStorage
 
       request = _http_request(host, path, method, headers, param_string, options[:data])
       if request.class == Net::HTTPUnauthorized
-        warn "Token expired, will attempt to get a new one" if @config.debug
-        @config.access_token = self.refresh_access_token(@config.refresh_token)["access_token"]
-        headers["Authorization"]      = 'Bearer ' + @config.access_token
+        @logger.warn "Warning: expected #{@config.instance_variable_get(:@access_token)} to be valid."
+        @config.refresh_access_token(self)
+        headers["Authorization"]      = 'Bearer ' + @config.access_token(self)
         request = _http_request(host, path, method, headers, param_string, options[:data])
       end
       request

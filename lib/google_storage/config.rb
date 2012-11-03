@@ -56,8 +56,12 @@ module GoogleStorage
       return self
     end
 
-    def access_token
-      access_token_valid? ? @access_token : refresh_access_token
+    def access_token(client = nil)
+      access_token_valid? ? @access_token : refresh_access_token(client)
+    end
+
+    def access_token=(val)
+      @access_token = val
     end
 
     def access_token_valid?
@@ -70,10 +74,9 @@ module GoogleStorage
       @access_token_expiry  < Time.now.to_i
     end
 
-    def refresh_access_token
-      # TODO(wenzowski): use the calling Client if it exists
-      GoogleStorage.config == self ? config = nil : config = self
-      response = Client.new(:config => config).refresh_access_token
+    def refresh_access_token(client = nil)
+      client ||= Client.new(:config => self)
+      response = client.refresh_access_token
 
       @access_token_expiry  = response['expires_in'].to_i + Time.now.to_i
       @access_token         = response['access_token']
@@ -82,6 +85,7 @@ module GoogleStorage
     def after_refresh_access_token(&block)
       if block
         @after_refresh_access_token = block
+        self
       else
         @after_refresh_access_token
       end

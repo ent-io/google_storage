@@ -26,13 +26,18 @@ VCR.configure do |c|
   end
 end
 
-GoogleStorage.configure do |config|
-  config.after_refresh_access_token do |response|
-    VCR.configure do |c|
-      c.filter_sensitive_data('____SILENCED_access_token____') do
-        response['access_token']
-      end
+$silence_access_token = lambda {|response|
+  VCR.configure do |c|
+    c.filter_sensitive_data('____SILENCED_access_token____') do
+      response['access_token']
     end
+  end
+}
+
+GoogleStorage.configure do |config|
+  config.log_level = GoogleStorage::Logger::INFO
+  config.after_refresh_access_token do |response|
+    $silence_access_token.call response
   end
 end
 
