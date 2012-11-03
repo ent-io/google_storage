@@ -73,10 +73,10 @@ module GoogleStorage
       response = http.start { http.request(req, data) }
       return response
       rescue Timeout::Error
-        GoogleStorage.logger.error "Timeout accessing #{path}: #{$!}"
+        @logger.error "Timeout accessing #{path}: #{$!}"
         nil
       rescue
-        GoogleStorage.logger.error "Error accessing #{path}: #{$!}"
+        @logger.error "Error accessing #{path}: #{$!}"
         nil
     end
 
