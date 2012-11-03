@@ -10,6 +10,7 @@ group :test, :development do
   gem 'simplecov'
   gem 'fakeweb'
   gem 'vcr'
+  gem 'fuubar'
 end
 
 group :development do
