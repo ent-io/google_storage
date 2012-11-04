@@ -5,15 +5,17 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
+begin
+  require 'simplecov'
+  SimpleCov.start
+rescue LoadError
+end
+
 require 'google_storage'
-require 'simplecov'
 require 'fakeweb'
 require 'vcr'
 
 require File.expand_path('../support/secret_data', __FILE__)
-
-
-SimpleCov.start
 
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
