@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+# ^ Syntax detection
+
+##
+# To use this Gemfile run
+#
+#     $ bundle install --gemfile Gemfile.known_stable
+##
+
+source :rubygems
+
+require 'google_storage/version'
+
+gem 'google_storage', GoogleStorage::VERSION
+gem 'jruby-openssl', :platforms => :jruby
