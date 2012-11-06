@@ -11,7 +11,6 @@ require 'fakeweb'
 require 'vcr'
 
 require File.expand_path('../support/secret_data', __FILE__)
-require File.expand_path('../support/monkeypatch_silence_access_token', __FILE__)
 
 
 SimpleCov.start
@@ -24,6 +23,9 @@ VCR.configure do |c|
   SecretData.new.silence! do |find, replace|
     # https://www.relishapp.com/myronmarston/vcr/docs/configuration/filter-sensitive-data
     c.filter_sensitive_data(replace) { find }
+  end
+  c.filter_sensitive_data('____SILENCED_access_token____') do |interaction|
+    interaction.request.headers['authorization'].first if interaction.request.headers['authorization']
   end
 end
 
