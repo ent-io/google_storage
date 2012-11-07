@@ -18,7 +18,7 @@ end
 VCR.configure do |c|
   c.cassette_library_dir = File.expand_path('../cassettes', File.dirname(__FILE__))
   c.hook_into :webmock
-  c.default_cassette_options = { :record => :none } #:all to develop with, change to :none when checking in
+  c.default_cassette_options = { :record => :all }
   #c.configure_rspec_metadata!
   SecretData.new(GS_YML_LOCATION).silence! do |find, replace|
     # https://www.relishapp.com/myronmarston/vcr/docs/configuration/filter-sensitive-data
