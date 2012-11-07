@@ -8,3 +8,6 @@ pkg/*
 .yardoc/*
 coverage/*
 .rbx/*
+
+spec/cassettes/*
+spec/support/bucket_library.yml
