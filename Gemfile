@@ -11,6 +11,7 @@ group :test, :development do
   gem 'fakeweb'
   gem 'vcr'
   gem 'fuubar'
+  gem 'secret_data'
 end
 
 group :development do

@@ -13,17 +13,15 @@ end
 
 require 'google_storage'
 require 'fakeweb'
+require 'secret_data'
 require 'vcr'
-
-require File.expand_path('../support/secret_data', __FILE__)
 
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
   c.hook_into :fakeweb
   c.default_cassette_options = { :record => :none }
   c.configure_rspec_metadata!
-  SecretData.new.silence! do |find, replace|
-    # https://www.relishapp.com/myronmarston/vcr/docs/configuration/filter-sensitive-data
+  SecretData.new.silence do |find, replace|
     c.filter_sensitive_data(replace) { find }
   end
 end
