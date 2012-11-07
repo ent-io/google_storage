@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe GoogleStorage::Client do
 
-  subject { GoogleStorage::Client }
+  subject { GoogleStorage::TestClient }
 
   context ':config_yml => nil' do
     it { expect { subject.new }.to raise_error(
@@ -26,9 +26,9 @@ describe GoogleStorage::Client do
   end
 
   context 'valid :config_yml' do
-    it { File.exists?('spec/support/google_storage.yml').should be_true }
+    it { File.exists?(GS_YML_LOCATION).should be_true }
     it { expect { 
-        subject.new(:config_yml => 'spec/support/google_storage.yml')
+        subject.new(:config_yml => GS_YML_LOCATION)
       }.to_not raise_error
     }
   end

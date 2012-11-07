@@ -11,6 +11,7 @@ group :test, :development do
   gem 'fakeweb'
   gem 'vcr'
   gem 'secret_data'
+  gem 'uuid'
 end
 
 group :development do
@@ -25,5 +26,5 @@ group :development do
   gem 'rb-inotify', :require => false, :group => :linux               # Linux
   gem 'wdm',        :require => false, :platforms => [:mswin, :mingw] # Windows
 
-  gem 'uuid'
+  gem 'debugger',   :platforms => :ruby_19
 end

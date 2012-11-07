@@ -1,54 +1,50 @@
 require 'spec_helper'
-require 'shared_examples/client'
-
-##
-# Prep for recording new episodes:
-#
-#  1. Initialize client.
-#
-#     client = GoogleStorage::Client.new :config_yml => 'spec/support/google_storage.yml'
-#
-#  2. Recreate expected test suite state remotely.
-#
-#     client.create_bucket '7829f2c0-0476-0130-7985-0023dfa5d78c'
-#
-#     client.create_bucket '9c0a6d00-0478-0130-7986-0023dfa5d78c', :x_goog_acl => 'public-read'
-#     client.set_webcfg '9c0a6d00-0478-0130-7986-0023dfa5d78c', {'MainPageSuffix' => 'index.html', 'NotFoundPage' => '404.html'}
-#
-#     client.create_bucket '7baa01c0-04f5-0130-7987-0023dfa5d78c', :x_goog_acl => 'public-read'
-#
-# Bucket names are UUIDs (or GUIDs). Generate new ones with
-#
-#     require 'uuid'
-#     UUID.new.generate
-#
-##
 
 describe GoogleStorage::Client do
 
-  let(:client) { 
-    GoogleStorage::Client.new :config_yml => 'spec/support/google_storage.yml'
+  let(:client) {
+    GoogleStorage::TestClient.new :config_yml => GS_YML_LOCATION
   }
 
   context '#get_webcfg' do
     context 'bucket exists with no webcfg' do
-      let(:bucket_name) { '7829f2c0-0476-0130-7985-0023dfa5d78c' }
+      let(:bucket_name) { 
+        BucketLibrary.use(
+          self.class.description, 
+          :method => :create_bucket
+        )['uuid']
+      }
 
       subject { client.get_webcfg bucket_name }
 
-      it_receives 'a successful response'
       it 'does not return a webcfg' do
+        subject[:success].should be_true
+        subject[:bucket_name].should == bucket_name
         subject['WebsiteConfiguration'].should be_nil
       end
     end
 
     context 'bucket exists with a webcfg' do 
-      let(:bucket_name) { '9c0a6d00-0478-0130-7986-0023dfa5d78c' }
+      let(:bucket_name) { 
+        BucketLibrary.use(
+          self.class.description, 
+          :method => :create_bucket,
+          :method_opt => {:x_goog_acl => 'public-read'}
+        )['uuid']
+      }
 
       subject { client.get_webcfg bucket_name }
 
-      it_receives 'a successful response'
+      before(:each) {
+        client.set_webcfg bucket_name, {
+          'MainPageSuffix'  =>  'index.html',
+          'NotFoundPage'    =>  '404.html'
+        }
+      }
+
       it 'returns the existing webcfg' do
+        subject[:success].should be_true
+        subject[:bucket_name].should == bucket_name
         subject['WebsiteConfiguration'].should == {
           'MainPageSuffix'  =>  'index.html', 
           'NotFoundPage'    =>  '404.html'
@@ -59,7 +55,13 @@ describe GoogleStorage::Client do
 
   context '#set_webcfg' do
     context 'bucket exists with unkown webcfg' do
-      let(:bucket_name) { '7baa01c0-04f5-0130-7987-0023dfa5d78c' }
+      let(:bucket_name) { 
+        BucketLibrary.use(
+          self.class.description, 
+          :method => :create_bucket,
+          :method_opt => {:x_goog_acl => 'public-read'}
+        )['uuid']
+      }
 
       context 'client ensures correct config exists' do
         subject { client.set_webcfg bucket_name, {
@@ -68,8 +70,9 @@ describe GoogleStorage::Client do
           }
         }
 
-        it_receives 'a successful response'
         it 'acknowledges operation success' do
+          subject[:success].should be_true
+          subject[:bucket_name].should == bucket_name
           subject[:message].should == 'Website Configuration successful'
         end
       end
@@ -77,8 +80,9 @@ describe GoogleStorage::Client do
       context 'client ensures no config exists' do
         subject { client.set_webcfg bucket_name, nil}
 
-        it_receives 'a successful response'
         it 'acknowledges operation success' do
+          subject[:success].should be_true
+          subject[:bucket_name].should == bucket_name
           subject[:message].should == 'Website Configuration successful'
         end
       end

@@ -16,16 +16,23 @@ require 'secret_data'
 require 'fakeweb'
 require 'vcr'
 
-require File.expand_path('../support/monkeypatch_silence_access_token', __FILE__)
+require File.expand_path('../support/test_client', __FILE__)
+require File.expand_path('../support/bucket_library', __FILE__)
 
+GS_YML_LOCATION = 'spec/support/google_storage.yml'
+
+BucketLibrary.configure do |c|
+  c.yaml_path = 'spec/support/bucket_library.yml'
+  c.gs_client = GoogleStorage::Client.new :config_yml => GS_YML_LOCATION
+end
 
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
   c.hook_into :fakeweb
-  c.default_cassette_options = { :record => :none }
+  c.default_cassette_options = { :record => :once }
   c.configure_rspec_metadata!
   SecretData.new(
-    :yml_path => 'spec/support/google_storage.yml'
+    :yml_path => GS_YML_LOCATION
   ).silence do |find, replace|
     c.filter_sensitive_data(replace) { find }
     c.filter_sensitive_data(URI.escape(replace, '/')) { find }
