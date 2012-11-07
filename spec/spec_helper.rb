@@ -19,7 +19,9 @@ require 'vcr'
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
   c.hook_into :fakeweb
-  c.default_cassette_options = { :record => :none }
+  if mode = ENV['GOOGLE_STORAGE_RECORD_MODE']
+    c.default_cassette_options = { :record => mode.to_sym }
+  end
   c.configure_rspec_metadata!
   SecretData.new.silence do |find, replace|
     c.filter_sensitive_data(replace) { find }
