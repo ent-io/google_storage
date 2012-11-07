@@ -27,4 +27,6 @@ group :development do
   gem 'wdm',        :require => false, :platforms => [:mswin, :mingw] # Windows
 
   gem 'debugger',   :platforms => :ruby_19
+
+  gem 'travis',     :github => 'laserlemon/travis-cli'
 end

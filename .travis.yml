@@ -12,3 +12,12 @@ rvm:
   - ree
 script:
   - bundle exec rspec
+env:
+  - [
+    {secure: "UkO0v5fSc1oXz3bs36h+7+mgNSpvhV1Ni5HC6G1fNIwKyDzCjSXAd0jLEXyy\nFfyk0iPW+qI0mOH8kkcxGTKCyCC85n6gixPZrPDpvYuwo4aaMtATNX7dVusB\nQlAzHMaz3GfO4DowL9Vvx6/HbjZsqW7dQN2ev8b0U3LFXFdrSBU="},
+    {secure: "XX/H45/5RWvxAZV6GT7Wq4Xc5Qg2pPeQ30XohBYIin2Ze2xtPZyxe1QLhpuL\n4Mv0dtYmOivIbSuNuxSqKIKZ9O6avaIEQKkoLglWjrAugG8hA23nkSpHBmw2\n5U5xXsv7H68tVcXNEmTOHMoD8rGJW+/vDDbannNSSlCvZN0n5EE="},
+    {secure: "a/VsrKN/aQVRM0Sd7mZvMpkx9OEkkRHWboqQBudGHNNdh4e2C51ONpyfJnob\nZr5/z+Atb+RrxMXv8kaxsXKkSZIHpJ2ueiig/IFxPW7QP/SdpWYUkBfjKfvf\nfdbrfePeQ0niHXMdtpcAGP2J4BdD88m0Gy3O7SmSuVBK2Tk1RNo="},
+    {secure: "ngVNcV3wRW8LcgKCWQcuvmgiSEXYrxK/N9F18vgvj0mO2Cwt/ZpZ4/uS5V9r\noU6/7U9YOJXA4VBQNyw3Uo9p5UcH0PZ0f/uUmYMYCfPHKZt3/30zkeFm0mFz\nsgaywX1/MojdkEHx/07aB20r0gF6tMwXzTL9zom9w1sl41lXykU="},
+    {secure: "jJ1mLt5jrGhQokDmQuyVGSRbFcAun1Mkm547z7eSYpVZvCdqDd4yTNsXgY4b\nAgPp0YPt7AbjqG8F1hn1nnJrGXSjasK/pm8SZXClVTeHpHeTi7s+nBctpXMD\nXIc2s0ce4lFGwqIrW7zrXj0bKHz1ncpgPqGXsZb7q//jmaKkIAo="},
+    {secure: "nbLDDqmcRMLaEk1VWbNFecTK6gHVIVWIUPkOZe+Zv36iWlETdqvN1TgQ8w6L\nwQAJI4uj0Td8A2RautGGFC+XcdzgFm3Pk05Ba8dBAcO3AaIlcKydE7BdsHp5\nrTTFSQXT0ew3tCCxJEgHJZzcWpGzWfovX5jCw1yvGs8pBXiJHfw="}
+  ]
