@@ -29,7 +29,14 @@ VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
   c.hook_into :fakeweb
   if mode = ENV['GOOGLE_STORAGE_RECORD_MODE']
-    c.default_cassette_options = { :record => mode.to_sym }
+    if seconds = ENV['GOOGLE_STORAGE_RE_RECORD_INTERVAL']
+      c.default_cassette_options = { 
+        :record             => mode.to_sym, 
+        :re_record_interval => seconds.to_i
+      }
+    else
+      c.default_cassette_options = { :record => mode.to_sym }
+    end
   end
   c.configure_rspec_metadata!
   SecretData.new(
