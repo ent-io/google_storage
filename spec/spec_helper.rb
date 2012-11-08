@@ -59,7 +59,7 @@ GoogleStorage.configure do |config|
   end
 end
 
-VCR.use_cassette('refresh_access_token', :record => :new_episodes) do
+VCR.use_cassette('refresh_access_token') do
   GoogleStorage.client.authorize
 end
 
@@ -97,4 +97,7 @@ RSpec.configure do |config|
   #     $stdout = STDOUT
   #   end
   # end
+  config.after(:suite) do
+    BucketLibrary.teardown
+  end
 end

@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: delete
+    uri: https://gs-gem-test-suite-3692bb20-0b7f-0130-7a1e-0023dfa5d78c.commondatastorage.googleapis.com/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - ! '*/*'
+      user-agent:
+      - Ruby
+      host:
+      - gs-gem-test-suite-3692bb20-0b7f-0130-7a1e-0023dfa5d78c.commondatastorage.googleapis.com
+      date:
+      - Thu, 08 Nov 2012 03:06:34 GMT
+      content-type:
+      - binary/octet-stream
+      content-length:
+      - '0'
+      x-goog-api-version:
+      - 2
+      authorization:
+      - Bearer ____SILENCED_access_token____
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      server:
+      - HTTP Upload Server Built on Oct 3 2012 16:52:30 (1349308350)
+      vary:
+      - Origin
+      date:
+      - Thu, 08 Nov 2012 03:06:35 GMT
+      expires:
+      - Thu, 08 Nov 2012 03:06:35 GMT
+      cache-control:
+      - private, max-age=0
+      content-length:
+      - '0'
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: '1.1'
+  recorded_at: Thu, 08 Nov 2012 03:06:35 GMT
+recorded_with: VCR 2.3.0

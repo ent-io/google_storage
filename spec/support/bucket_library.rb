@@ -1,6 +1,7 @@
 require 'yaml'
 require 'erb'
 require 'uuid'
+require 'vcr'
 
 require 'google_storage'
 
@@ -16,6 +17,14 @@ class BucketLibrary
 
     def configure(&block)
       block.call self.config
+    end
+
+    def teardown
+      self.config.buckets.each_pair do |key, bucket|
+        VCR.use_cassette("teardown/#{bucket['uuid']}") do
+          self.config.gs_client.delete_bucket bucket['uuid']
+        end
+      end
     end
   end
 

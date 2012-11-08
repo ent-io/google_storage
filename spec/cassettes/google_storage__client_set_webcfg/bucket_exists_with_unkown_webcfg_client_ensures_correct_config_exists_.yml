@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: put
-    uri: https://gs-gem-test-suite-080e34c0-0b79-0130-7a1c-0023dfa5d78c.commondatastorage.googleapis.com/
+    uri: https://gs-gem-test-suite-3692bb20-0b7f-0130-7a1e-0023dfa5d78c.commondatastorage.googleapis.com/
     body:
       encoding: US-ASCII
       string: ''
@@ -12,9 +12,9 @@ http_interactions:
       user-agent:
       - Ruby
       host:
-      - gs-gem-test-suite-080e34c0-0b79-0130-7a1c-0023dfa5d78c.commondatastorage.googleapis.com
+      - gs-gem-test-suite-3692bb20-0b7f-0130-7a1e-0023dfa5d78c.commondatastorage.googleapis.com
       date:
-      - Thu, 08 Nov 2012 02:22:13 GMT
+      - Thu, 08 Nov 2012 03:06:28 GMT
       content-type:
       - binary/octet-stream
       content-length:
@@ -37,7 +37,7 @@ http_interactions:
       vary:
       - Origin
       date:
-      - Thu, 08 Nov 2012 02:22:15 GMT
+      - Thu, 08 Nov 2012 03:06:30 GMT
       pragma:
       - no-cache
       expires:
@@ -52,10 +52,10 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     http_version: '1.1'
-  recorded_at: Thu, 08 Nov 2012 02:22:15 GMT
+  recorded_at: Thu, 08 Nov 2012 03:06:30 GMT
 - request:
     method: put
-    uri: https://gs-gem-test-suite-080e34c0-0b79-0130-7a1c-0023dfa5d78c.commondatastorage.googleapis.com/?websiteConfig
+    uri: https://gs-gem-test-suite-3692bb20-0b7f-0130-7a1e-0023dfa5d78c.commondatastorage.googleapis.com/?websiteConfig
     body:
       encoding: US-ASCII
       string: <WebsiteConfiguration><MainPageSuffix>index.html</MainPageSuffix><NotFoundPage>404.html</NotFoundPage></WebsiteConfiguration>
@@ -65,9 +65,9 @@ http_interactions:
       user-agent:
       - Ruby
       host:
-      - gs-gem-test-suite-080e34c0-0b79-0130-7a1c-0023dfa5d78c.commondatastorage.googleapis.com
+      - gs-gem-test-suite-3692bb20-0b7f-0130-7a1e-0023dfa5d78c.commondatastorage.googleapis.com
       date:
-      - Thu, 08 Nov 2012 02:22:15 GMT
+      - Thu, 08 Nov 2012 03:06:30 GMT
       content-type:
       - binary/octet-stream
       content-length:
@@ -86,7 +86,7 @@ http_interactions:
       vary:
       - Origin
       date:
-      - Thu, 08 Nov 2012 02:22:16 GMT
+      - Thu, 08 Nov 2012 03:06:31 GMT
       pragma:
       - no-cache
       expires:
@@ -101,5 +101,5 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     http_version: '1.1'
-  recorded_at: Thu, 08 Nov 2012 02:22:16 GMT
+  recorded_at: Thu, 08 Nov 2012 03:06:31 GMT
 recorded_with: VCR 2.3.0

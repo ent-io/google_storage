@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: put
-    uri: https://gs-gem-test-suite-05655910-0b79-0130-7a1c-0023dfa5d78c.commondatastorage.googleapis.com/
+    uri: https://gs-gem-test-suite-331525b0-0b7f-0130-7a1e-0023dfa5d78c.commondatastorage.googleapis.com/
     body:
       encoding: US-ASCII
       string: ''
@@ -12,9 +12,9 @@ http_interactions:
       user-agent:
       - Ruby
       host:
-      - gs-gem-test-suite-05655910-0b79-0130-7a1c-0023dfa5d78c.commondatastorage.googleapis.com
+      - gs-gem-test-suite-331525b0-0b7f-0130-7a1e-0023dfa5d78c.commondatastorage.googleapis.com
       date:
-      - Thu, 08 Nov 2012 02:22:09 GMT
+      - Thu, 08 Nov 2012 03:06:22 GMT
       content-type:
       - binary/octet-stream
       content-length:
@@ -35,7 +35,7 @@ http_interactions:
       vary:
       - Origin
       date:
-      - Thu, 08 Nov 2012 02:22:10 GMT
+      - Thu, 08 Nov 2012 03:06:25 GMT
       pragma:
       - no-cache
       expires:
@@ -50,10 +50,10 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     http_version: '1.1'
-  recorded_at: Thu, 08 Nov 2012 02:22:10 GMT
+  recorded_at: Thu, 08 Nov 2012 03:06:25 GMT
 - request:
     method: get
-    uri: https://gs-gem-test-suite-05655910-0b79-0130-7a1c-0023dfa5d78c.commondatastorage.googleapis.com/?websiteConfig
+    uri: https://gs-gem-test-suite-331525b0-0b7f-0130-7a1e-0023dfa5d78c.commondatastorage.googleapis.com/?websiteConfig
     body:
       encoding: US-ASCII
       string: ''
@@ -63,9 +63,9 @@ http_interactions:
       user-agent:
       - Ruby
       host:
-      - gs-gem-test-suite-05655910-0b79-0130-7a1c-0023dfa5d78c.commondatastorage.googleapis.com
+      - gs-gem-test-suite-331525b0-0b7f-0130-7a1e-0023dfa5d78c.commondatastorage.googleapis.com
       date:
-      - Thu, 08 Nov 2012 02:22:11 GMT
+      - Thu, 08 Nov 2012 03:06:25 GMT
       content-type:
       - binary/octet-stream
       content-length:
@@ -88,14 +88,14 @@ http_interactions:
       vary:
       - Origin
       date:
-      - Thu, 08 Nov 2012 02:22:11 GMT
+      - Thu, 08 Nov 2012 03:06:25 GMT
       expires:
-      - Thu, 08 Nov 2012 02:22:11 GMT
+      - Thu, 08 Nov 2012 03:06:25 GMT
       cache-control:
       - private, max-age=0
     body:
       encoding: US-ASCII
       string: <?xml version='1.0' encoding='UTF-8'?><WebsiteConfiguration/>
     http_version: '1.1'
-  recorded_at: Thu, 08 Nov 2012 02:22:11 GMT
+  recorded_at: Thu, 08 Nov 2012 03:06:25 GMT
 recorded_with: VCR 2.3.0
