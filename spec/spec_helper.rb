@@ -16,7 +16,14 @@ require 'fakeweb'
 require 'secret_data'
 require 'vcr'
 
+require File.expand_path('../support/bucket_library', __FILE__)
+
 $google_storage_yml_path = 'spec/support/google_storage.yml'
+
+BucketLibrary.configure do |c|
+  c.yaml_path = 'spec/support/bucket_library.yml'
+  c.gs_client = GoogleStorage::Client.new :config_yml => $google_storage_yml_path
+end
 
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
