@@ -63,6 +63,10 @@ module GoogleStorage
       opts[:logger] ? @logger = opts[:logger] : @logger = GoogleStorage.logger
     end
 
+    def authorize
+      @config.access_token(self)
+    end
+
     private
       
       def get(bucket, path, options={})

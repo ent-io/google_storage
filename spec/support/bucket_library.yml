@@ -1,0 +1,22 @@
+---
+client ensures no config exists:
+  uuid: gs-gem-test-suite-09a3a580-0b79-0130-7a1c-0023dfa5d78c
+  :method: :create_bucket
+  :method_opt:
+    :x_goog_acl: public-read
+    :send_goog_project_id: true
+client ensures correct config exists:
+  uuid: gs-gem-test-suite-080e34c0-0b79-0130-7a1c-0023dfa5d78c
+  :method: :create_bucket
+  :method_opt:
+    :x_goog_acl: public-read
+    :send_goog_project_id: true
+bucket exists with a webcfg:
+  uuid: gs-gem-test-suite-06b52700-0b79-0130-7a1c-0023dfa5d78c
+  :method: :create_bucket
+  :method_opt:
+    :x_goog_acl: public-read
+    :send_goog_project_id: true
+bucket exists with no webcfg:
+  uuid: gs-gem-test-suite-05655910-0b79-0130-7a1c-0023dfa5d78c
+  :method: :create_bucket

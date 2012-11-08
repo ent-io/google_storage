@@ -26,17 +26,17 @@ require 'spec_helper'
 
 describe GoogleStorage::Client do
 
-  let(:client) {
-    GoogleStorage.configure do |config|
-      config.from_yaml $google_storage_yml_path
-    end
-    GoogleStorage::Client.new
-  }
+  let(:client) { GoogleStorage.client }
 
   context '#get_webcfg' do
 
     context 'bucket exists with no webcfg' do
-      let(:bucket_name) { '7829f2c0-0476-0130-7985-0023dfa5d78c' }
+      let(:bucket_name) { 
+        BucketLibrary.use(
+          self.class.description, 
+          :method => :create_bucket
+        )['uuid']
+      }
 
       subject { client.get_webcfg bucket_name }
 
@@ -46,7 +46,20 @@ describe GoogleStorage::Client do
     end
 
     context 'bucket exists with a webcfg' do 
-      let(:bucket_name) { '9c0a6d00-0478-0130-7986-0023dfa5d78c' }
+      let(:bucket_name) { 
+        BucketLibrary.use(
+          self.class.description, 
+          :method => :create_bucket,
+          :method_opt => {:x_goog_acl => 'public-read'}
+        )['uuid']
+      }
+
+      before(:each) do
+        client.set_webcfg bucket_name, {
+          'MainPageSuffix'  =>  'index.html',
+          'NotFoundPage'    =>  '404.html'
+        }
+      end
 
       subject { client.get_webcfg bucket_name }
 
@@ -65,7 +78,13 @@ describe GoogleStorage::Client do
   context '#set_webcfg' do
 
     context 'bucket exists with unkown webcfg' do
-      let(:bucket_name) { '7baa01c0-04f5-0130-7987-0023dfa5d78c' }
+      let(:bucket_name) { 
+        BucketLibrary.use(
+          self.class.description, 
+          :method => :create_bucket,
+          :method_opt => {:x_goog_acl => 'public-read'}
+        )['uuid']
+      }
 
       context 'client ensures correct config exists' do
         subject { client.set_webcfg bucket_name, {

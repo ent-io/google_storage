@@ -39,7 +39,7 @@ describe GoogleStorage::Config do
       it { subject.instance_variable_get(:@access_token_expiry).should be_nil }
       it { subject.access_token_expired?.should be_true }
 
-      it { subject.access_token.should == '____SILENCED_access_token____' }
+      # it { subject.access_token.should == '____SILENCED_access_token____' }
     end
     # context 'live tests', vcr: {record: :all} do
     #   it { subject.access_token.should have(60).characters }

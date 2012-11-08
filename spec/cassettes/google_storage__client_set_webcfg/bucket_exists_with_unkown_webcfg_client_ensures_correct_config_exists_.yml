@@ -1,58 +1,61 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://accounts.google.com/o/oauth2/token
+    method: put
+    uri: https://gs-gem-test-suite-080e34c0-0b79-0130-7a1c-0023dfa5d78c.commondatastorage.googleapis.com/
     body:
       encoding: US-ASCII
-      string: client_id=____SILENCED_client_id____&client_secret=____SILENCED_client_secret____&grant_type=refresh_token&refresh_token=____SILENCED_refresh_token____
+      string: ''
     headers:
-      host:
-      - accounts.google.com
-      date:
-      - Wed, 31 Oct 2012 00:26:03 GMT
-      content-type:
-      - application/x-www-form-urlencoded
-      content-length:
-      - '0'
       accept:
       - ! '*/*'
       user-agent:
       - Ruby
+      host:
+      - gs-gem-test-suite-080e34c0-0b79-0130-7a1c-0023dfa5d78c.commondatastorage.googleapis.com
+      date:
+      - Thu, 08 Nov 2012 02:22:13 GMT
+      content-type:
+      - binary/octet-stream
+      content-length:
+      - '0'
+      x-goog-api-version:
+      - 2
+      x-goog-project-id:
+      - 459171454079
+      authorization:
+      - Bearer ____SILENCED_access_token____
+      x-goog-acl:
+      - public-read
   response:
     status:
       code: 200
       message: OK
     headers:
-      cache-control:
-      - no-cache, no-store, max-age=0, must-revalidate
+      server:
+      - HTTP Upload Server Built on Oct 3 2012 16:52:30 (1349308350)
+      vary:
+      - Origin
+      date:
+      - Thu, 08 Nov 2012 02:22:15 GMT
       pragma:
       - no-cache
       expires:
       - Fri, 01 Jan 1990 00:00:00 GMT
-      date:
-      - Wed, 31 Oct 2012 00:26:03 GMT
+      cache-control:
+      - no-cache, no-store, must-revalidate
+      content-length:
+      - '0'
       content-type:
-      - application/json
-      x-content-type-options:
-      - nosniff
-      x-frame-options:
-      - SAMEORIGIN
-      x-xss-protection:
-      - 1; mode=block
-      server:
-      - GSE
-      connection:
-      - close
+      - text/html; charset=UTF-8
     body:
       encoding: US-ASCII
-      string: ! "{\n  \"access_token\" : \"____SILENCED_access_token____\",\n  \"token_type\"
-        : \"Bearer\",\n  \"expires_in\" : 3600\n}"
+      string: ''
     http_version: '1.1'
-  recorded_at: Wed, 31 Oct 2012 00:26:03 GMT
+  recorded_at: Thu, 08 Nov 2012 02:22:15 GMT
 - request:
     method: put
-    uri: https://7baa01c0-04f5-0130-7987-0023dfa5d78c.commondatastorage.googleapis.com/?websiteConfig
+    uri: https://gs-gem-test-suite-080e34c0-0b79-0130-7a1c-0023dfa5d78c.commondatastorage.googleapis.com/?websiteConfig
     body:
       encoding: US-ASCII
       string: <WebsiteConfiguration><MainPageSuffix>index.html</MainPageSuffix><NotFoundPage>404.html</NotFoundPage></WebsiteConfiguration>
@@ -62,9 +65,9 @@ http_interactions:
       user-agent:
       - Ruby
       host:
-      - 7baa01c0-04f5-0130-7987-0023dfa5d78c.commondatastorage.googleapis.com
+      - gs-gem-test-suite-080e34c0-0b79-0130-7a1c-0023dfa5d78c.commondatastorage.googleapis.com
       date:
-      - Wed, 31 Oct 2012 00:26:03 GMT
+      - Thu, 08 Nov 2012 02:22:15 GMT
       content-type:
       - binary/octet-stream
       content-length:
@@ -83,7 +86,7 @@ http_interactions:
       vary:
       - Origin
       date:
-      - Wed, 31 Oct 2012 00:26:04 GMT
+      - Thu, 08 Nov 2012 02:22:16 GMT
       pragma:
       - no-cache
       expires:
@@ -98,5 +101,5 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     http_version: '1.1'
-  recorded_at: Wed, 31 Oct 2012 00:26:04 GMT
+  recorded_at: Thu, 08 Nov 2012 02:22:16 GMT
 recorded_with: VCR 2.3.0

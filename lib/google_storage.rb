@@ -16,6 +16,10 @@ module GoogleStorage
       self
     end
 
+    def client
+      @client ||= GoogleStorage::Client.new
+    end
+
     def logger
       @logger ||= new_logger
     end

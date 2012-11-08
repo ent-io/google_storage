@@ -18,12 +18,8 @@ require 'vcr'
 
 require File.expand_path('../support/bucket_library', __FILE__)
 
-$google_storage_yml_path = 'spec/support/google_storage.yml'
-
-BucketLibrary.configure do |c|
-  c.yaml_path = 'spec/support/bucket_library.yml'
-  c.gs_client = GoogleStorage::Client.new :config_yml => $google_storage_yml_path
-end
+$google_storage_yml_path            = 'spec/support/google_storage.yml'
+$google_storage_bucket_library_path = 'spec/support/bucket_library.yml'
 
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
@@ -43,6 +39,7 @@ VCR.configure do |c|
     :yml_path => $google_storage_yml_path
   ).silence do |find, replace|
     c.filter_sensitive_data(replace) { find }
+    c.filter_sensitive_data(replace) { URI.escape(find, '/') }
   end
 end
 
@@ -55,10 +52,20 @@ $silence_access_token = lambda {|response|
 }
 
 GoogleStorage.configure do |config|
+  config.from_yaml   $google_storage_yml_path
   config.log_level = GoogleStorage::Logger::INFO
   config.after_refresh_access_token do |response|
     $silence_access_token.call response
   end
+end
+
+VCR.use_cassette('refresh_access_token', :record => :new_episodes) do
+  GoogleStorage.client.authorize
+end
+
+BucketLibrary.configure do |c|
+  c.yaml_path = $google_storage_bucket_library_path
+  c.gs_client = GoogleStorage.client
 end
 
 RSpec.configure do |config|
