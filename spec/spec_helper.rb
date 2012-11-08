@@ -16,6 +16,8 @@ require 'fakeweb'
 require 'secret_data'
 require 'vcr'
 
+$google_storage_yml_path = 'spec/support/google_storage.yml'
+
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
   c.hook_into :fakeweb
@@ -23,7 +25,9 @@ VCR.configure do |c|
     c.default_cassette_options = { :record => mode.to_sym }
   end
   c.configure_rspec_metadata!
-  SecretData.new.silence do |find, replace|
+  SecretData.new(
+    :yml_path => $google_storage_yml_path
+  ).silence do |find, replace|
     c.filter_sensitive_data(replace) { find }
   end
 end

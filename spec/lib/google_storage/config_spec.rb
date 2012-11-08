@@ -14,7 +14,7 @@ describe GoogleStorage::Config do
       it { expect { subject.from_yaml('.') }.to raise_error SystemCallError }
     end
     context 'with valid yaml config' do
-      subject { GoogleStorage::Config.new.from_yaml 'spec/support/google_storage.yml' }
+      subject { GoogleStorage::Config.new.from_yaml $google_storage_yml_path }
       it { expect { subject }.to_not raise_error }
       it { subject.class.should be GoogleStorage::Config }
 
@@ -28,7 +28,7 @@ describe GoogleStorage::Config do
   context '#access_token' do
     subject do
       GoogleStorage::Config.new.from_yaml(
-        'spec/support/google_storage.yml'
+        $google_storage_yml_path
       ).after_refresh_access_token do |response|
         $silence_access_token.call response
       end

@@ -5,7 +5,8 @@ require 'spec_helper'
 #
 #  1. Initialize client.
 #
-#     client = GoogleStorage::Client.new :config_yml => 'spec/support/google_storage.yml'
+#     GoogleStorage.configure {|c| c.from_yaml 'spec/support/google_storage.yml'}
+#     client = GoogleStorage::Client.new
 #
 #  2. Recreate expected test suite state remotely.
 #
@@ -27,7 +28,7 @@ describe GoogleStorage::Client do
 
   let(:client) {
     GoogleStorage.configure do |config|
-      config.from_yaml 'spec/support/google_storage.yml'
+      config.from_yaml $google_storage_yml_path
     end
     GoogleStorage::Client.new
   }
